@@ -14,7 +14,7 @@ export const headers = (authToken: string) => ({
   authorization: `Bearer ${authToken}`
 });
 
-export const getExampleWithoutParamsAuth = async (authToken: string) => {
+export const getExampleWithoutParamsAuth = async authToken => {
   const uri = `${config.API_URL}/endpoint/`;
   const response = await fetch(uri, { headers: headers(authToken) });
   return handleResponse(response);
