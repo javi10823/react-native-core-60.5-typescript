@@ -17,6 +17,7 @@ export const headers = (authToken: string) => ({
 export const getExampleWithoutParamsAuth = async authToken => {
   const uri = `${config.API_URL}/endpoint/`;
   const response = await fetch(uri, { headers: headers(authToken) });
+
   return handleResponse(response);
 };
 

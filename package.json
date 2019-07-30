@@ -30,7 +30,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "tsc",
+      "tsc --skipLibCheck",
       "tslint -c tslint.json 'src/**/*.ts{,x}'",
       "prettier --write",
       "eslint --ext=ts --ignore-path .prettierignore --fix",
