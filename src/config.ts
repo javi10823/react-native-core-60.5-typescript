@@ -2,7 +2,7 @@
 import { API_URL, SENTRY_DSN } from "react-native-dotenv";
 import { Config } from "./interfaces";
 
-export const getConfig = (): Config => {
+export const getConfig = () => {
   const config = {
     isDev: __DEV__,
     API_URL,
@@ -11,4 +11,4 @@ export const getConfig = (): Config => {
   return config;
 };
 
-export const config: Config = getConfig();
+export const config = getConfig();
