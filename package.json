@@ -16,7 +16,7 @@
     "pod-clear": "cd ios && pod cache clean --all;rm -rf ~/Library/Caches/CocoaPods; rm -rf Pods; rm -rf ~/Library/Developer/Xcode/DerivedData/*; pod deintegrate; pod setup; pod install;",
     "clear": "watchman watch-del-all && rm -rf node_modules/ && yarn cache clean && yarn install && yarn start -- --reset-cache",
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}'",
-    "tsc": "tsc --skipLibCheck"
+    "tsc": "tsc"
   },
   "rnpm": {
     "assets": [
@@ -25,12 +25,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "tsc && lint-staged"
     }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "tsc --skipLibCheck",
       "tslint -c tslint.json 'src/**/*.ts{,x}'",
       "prettier --write",
       "eslint --ext=ts --ignore-path .prettierignore --fix",
