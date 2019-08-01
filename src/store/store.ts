@@ -3,14 +3,10 @@ import thunk from "redux-thunk";
 
 import rootReducer from "../reducers";
 
-import { getConfig } from "../config";
-
 function getMiddlewares() {
   const middlewares = [thunk];
 
-  const config = getConfig();
-
-  if (config.isDev) {
+  if (__DEV__) {
     const { logger } = require("redux-logger");
     middlewares.push(logger);
   }

@@ -1,6 +1,5 @@
-import { getConfig } from "../../config";
-
-const config = getConfig();
+// @ts-ignore
+import { API_URL } from "react-native-dotenv";
 
 const handleResponse = async (response: any) => {
   if (response.status === 500) throw new Error(await response.text());
@@ -15,7 +14,7 @@ export const headers = (authToken: string) => ({
 });
 
 export const getExampleWithoutParamsAuth = async (authToken: string) => {
-  const uri = `${config.API_URL}/endpoint/`;
+  const uri = `${API_URL}/endpoint/`;
   const response = await fetch(uri, { headers: headers(authToken) });
   return handleResponse(response);
 };
@@ -31,7 +30,7 @@ const serialize = (obj: any) =>
     .join("/");
 
 export const getExampleWithParams = async (params: ParamsExample) => {
-  const uri = `${config.API_URL}/endpoint/${serialize({
+  const uri = `${API_URL}/endpoint/${serialize({
     param1: params.param1
   })}`;
 
