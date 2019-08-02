@@ -1,4 +1,4 @@
-import { getConfig } from "../../config";
+import { getConfig } from '../../config';
 
 const config = getConfig();
 
@@ -9,9 +9,9 @@ const handleResponse = async (response: any) => {
 };
 
 const headers = new Headers({
-  "Content-Type": "application/json",
+  'Content-Type': 'application/json',
   Authorization: config.API_URL,
-  accept: "application/json"
+  accept: 'application/json',
 });
 
 interface ParamsRegisterUser {
@@ -24,15 +24,15 @@ interface ParamsRegisterUser {
 
 export const RegisterUser = async (params: ParamsRegisterUser) => {
   const response = await fetch(`${config.API_URL}/register`, {
-    method: "POST",
+    method: 'POST',
     headers,
     body: JSON.stringify({
       iid: params.iid,
       email: params.email,
       password: params.password,
       firstName: params.firstName,
-      lastName: params.lastName
-    })
+      lastName: params.lastName,
+    }),
   });
 
   return handleResponse(response);

@@ -1,37 +1,37 @@
 import {
   createStackNavigator,
   StackNavigatorConfig,
-  NavigationScreenProp
-} from "react-navigation";
+  NavigationScreenProp,
+} from 'react-navigation';
 
-import WelcomeScreen from "../screens/welcome";
+import WelcomeScreen from '../screens/welcome';
 
-import { styles } from "./styles";
+import { styles } from './styles';
 
 const defaultNavigationOptions = ({
-  navigation
+  navigation,
 }: {
   navigation: NavigationScreenProp<any>;
 }) => ({
   headerTitle: navigation.state.routeName,
   headerTitleStyle: styles.headerTitle,
-  headerStyle: styles.headerStyle
+  headerStyle: styles.headerStyle,
 });
 
 const stackConfig: StackNavigatorConfig = {
-  defaultNavigationOptions
+  defaultNavigationOptions,
 };
 
 const noHeader = {
-  header: null
+  header: null,
 };
 
 export const MainStack = createStackNavigator(
   {
     Welcome: {
       screen: WelcomeScreen,
-      navigationOptions: noHeader
-    }
+      navigationOptions: noHeader,
+    },
   },
-  stackConfig
+  stackConfig,
 );

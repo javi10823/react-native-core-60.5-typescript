@@ -1,7 +1,7 @@
-import { Dimensions, Platform, PixelRatio } from "react-native";
-import { REF_RATIO } from "./responsive";
+import { Dimensions, Platform, PixelRatio } from 'react-native';
+import { REF_RATIO } from './responsive';
 
-const { height, width } = Dimensions.get("window");
+const { height, width } = Dimensions.get('window');
 
 export const H = height;
 export const W = width;
@@ -11,7 +11,7 @@ const scale = width / 320;
 
 export function normalize(size: number) {
   const newSize = size * scale;
-  if (Platform.OS === "ios") {
+  if (Platform.OS === 'ios') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize));
   }
 
@@ -26,9 +26,9 @@ export function responsiveSize(value: number) {
 
 export function responsiveSizePlatForm(
   iphoneSize: number,
-  androidSize: number
+  androidSize: number,
 ) {
-  return Platform.OS === "ios"
+  return Platform.OS === 'ios'
     ? responsiveSize(iphoneSize)
     : responsiveSize(androidSize);
 }

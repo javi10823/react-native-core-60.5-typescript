@@ -1,9 +1,9 @@
-import { Action } from "../../actions/exampleGet/exampleGet";
+import { Action } from '../../actions/exampleGet/exampleGet';
 import {
   REQUEST_EXAMPLE_GET_REQUEST,
   REQUEST_EXAMPLE_GET_ERROR,
-  REQUEST_EXAMPLE_GET_RESPONSE
-} from "../../actions/types";
+  REQUEST_EXAMPLE_GET_RESPONSE,
+} from '../../actions/types';
 
 export interface State {
   error?: string;
@@ -14,7 +14,7 @@ export interface State {
 const INITIAL_STATE: State = {
   error: undefined,
   loading: false,
-  results: undefined
+  results: undefined,
 };
 
 export default (state: State = INITIAL_STATE, action: Action): State => {

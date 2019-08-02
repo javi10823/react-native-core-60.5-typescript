@@ -5,18 +5,19 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "ios": "react-native run-ios",
-    "android": "react-native run-android",
-    "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build && rm -rf node_modules/ && yarn cache clean --force && yarn install",
-    "test": "jest",
-    "format": "yarn prettier-format && yarn eslint-format",
+    "and": "react-native run-android",
+    "--------------------------------------------------------------": "",
     "prettier-format": "prettier \"**/*.{js,jsx,json,tsx,ts}\" --write",
+    "format": "yarn prettier-format && yarn eslint-format",
     "eslint": "eslint --ext=.js,.ts,.tsx --ignore-path .gitignore --ignore-path .prettierignore \"**/*.{tsx,ts}\"",
     "eslint-format": "eslint --ext=.js,.ts,.tsx --fix",
-    "test-update": "./node_modules/.bin/jest --updateSnapshot",
+    "---------------------------------------------------------------": "",
     "pod-clear": "cd ios && pod cache clean --all;rm -rf ~/Library/Caches/CocoaPods; rm -rf Pods; rm -rf ~/Library/Developer/Xcode/DerivedData/*; pod deintegrate; pod setup; pod install;",
     "clear": "watchman watch-del-all && rm -rf node_modules/ && yarn cache clean && yarn install && yarn start -- --reset-cache",
-    "lint": "tslint -c tslint.json 'src/**/*.ts{,x}'",
-    "tsc": "tsc"
+    "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build && rm -rf node_modules/ && yarn cache clean --force && yarn install",
+    "----------------------------------------------------------------": "",
+    "lint": "tsc --noEmit --skipLibCheck && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "ts": "tsc --watch --noEmit --skipLibCheck"
   },
   "rnpm": {
     "assets": [
@@ -25,15 +26,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsc && lint-staged"
+      "pre-commit": "tsc --noEmit --skipLibCheck && lint-staged"
     }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "tslint -c tslint.json 'src/**/*.ts{,x}'",
+      "yarn run lint",
       "prettier --write",
-      "eslint --ext=ts --ignore-path .prettierignore --fix",
-      "eslint --ext=ts --ignore-path .gitignore --ignore-path .prettierignore \"**/*.{ts,jsx}\"",
       "git add"
     ],
     "*.{json}": [
@@ -42,15 +41,11 @@
     ]
   },
   "dependencies": {
-    "@types/node": "^12.6.4",
-    "@types/react-native-dotenv": "^0.2.0",
-    "@types/react-redux": "^7.1.1",
-    "@types/redux-form": "^8.1.4",
-    "@types/remote-redux-devtools": "^0.5.3",
     "react": "16.8.3",
     "react-native": "0.59.9",
     "react-native-dotenv": "^0.2.0",
     "react-native-gesture-handler": "^1.3.0",
+    "react-native-material-textfield": "^0.12.0",
     "react-native-sentry": "^0.43.2",
     "react-native-unimodules": "^0.4.1",
     "react-navigation": "^3.11.0",
@@ -66,17 +61,23 @@
     "@babel/core": "^7.4.5",
     "@babel/runtime": "^7.4.5",
     "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.4",
     "@types/react": "^16.8.22",
     "@types/react-native": "^0.57.64",
     "@types/react-native-dotenv": "^0.2.0",
+    "@types/react-native-material-textfield": "^0.12.3",
     "@types/react-navigation": "^3.0.7",
+    "@types/react-redux": "^7.1.1",
     "@types/react-test-renderer": "^16.8.2",
+    "@types/redux-form": "^8.1.4",
+    "@types/remote-redux-devtools": "^0.5.3",
     "@types/styled-components": "^4.1.16",
-    "@typescript-eslint/eslint-plugin": "^1.12.0",
-    "@typescript-eslint/parser": "^1.12.0",
+    "@types/yup": "^0.26.22",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
     "babel-jest": "^24.8.0",
     "dtslint": "^0.8.0",
-    "eslint": "^6.0.1",
+    "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
@@ -85,7 +86,6 @@
     "lint-staged": "^8.1.4",
     "metro-react-native-babel-preset": "^0.54.1",
     "prettier": "^1.18.2",
-    "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.8.3",
     "redux-logger": "^3.0.6",
     "tslint-config-prettier": "^1.18.0",

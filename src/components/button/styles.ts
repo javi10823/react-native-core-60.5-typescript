@@ -1,7 +1,7 @@
-import { TextProps, TouchableOpacityProps } from "react-native";
-import styled, { css } from "styled-components/native";
-import { responsiveSize } from "../../utils/dimensions";
-import { Type, Size } from "./Button";
+import { TextProps, TouchableOpacityProps } from 'react-native';
+import styled, { css } from 'styled-components/native';
+import { responsiveSize } from '../../utils/dimensions';
+import { Type, Size } from './Button';
 
 type TitleProps = {
   type: Type;
@@ -17,13 +17,13 @@ const getTypeStyle = (type: Type, disabled: boolean) =>
   ({
     primary: css`
       background-color: ${p =>
-        disabled ? p.theme.global.inactive : p.theme.global.lightBlue};
+        disabled ? p.theme.color.inactive : p.theme.color.lightBlue};
       /* you can pass other type specific styles here */
     `,
     secondary: css`
       background-color: transparent;
       /* you can pass other type specific styles here */
-    `
+    `,
   }[type]);
 
 const getSizeStyle = (size: Size) =>
@@ -39,17 +39,17 @@ const getSizeStyle = (size: Size) =>
     `,
     auto: css`
       /* fits to text width */
-    `
+    `,
   }[size]);
 
 function getTextStyle(type: Type) {
   return {
     primary: css`
-      color: ${p => p.theme.global.white};
+      color: ${p => p.theme.color.white};
     `,
     secondary: css`
-      color: ${p => p.theme.global.lightBlue};
-    `
+      color: ${p => p.theme.color.lightBlue};
+    `,
   }[type];
 }
 

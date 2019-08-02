@@ -21,9 +21,14 @@ module.exports = {
       // e.g. "@typescript-eslint/explicit-function-return-type": "off",
       '@typescript-eslint/explicit-member-accessibility': 0,
       '@typescript-eslint/explicit-function-return-type': 0,
+      '@typescript-eslint/restrict-plus-operands': 0,
       '@typescript-eslint/no-var-requires': 0,
-      '@typescript-eslint/restrict-plus-operands': 'error',
+      '@typescript-eslint/restrict-plus-operands': 0,
+      '@typescript-eslint/camelcase': 0,
+      '@typescript-eslint/no-non-null-assertion': 0,
+      '@typescript-eslint/no-use-before-define': 0,
       'no-unused-expressions': 1,
+      'react/prop-types': 0,
     },
     settings: {
       react: {

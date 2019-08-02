@@ -1,12 +1,12 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-import Typography from "../../components/typography";
-import { responsiveSize } from "../../utils/dimensions";
-import { theme } from "../../utils/Colors";
+import Typography from '../../components/typography';
+import { responsiveSize } from '../../utils/dimensions';
+import { theme } from '../../styled';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${theme.global.white};
+  background-color: ${theme.color.white};
   justify-content: center;
   align-items: center;
 `;

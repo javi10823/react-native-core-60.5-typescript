@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { ButtonTouchable, Title } from "./styles";
+import { ButtonTouchable, Title } from './styles';
 
-export type Type = "primary" | "secondary";
+export type Type = 'primary' | 'secondary';
 
-export type Size = "small" | "medium" | "big" | "auto";
+export type Size = 'small' | 'medium' | 'big' | 'auto';
 
 interface ButtonProps {
   text: string;
@@ -26,9 +26,10 @@ const Button = ({ text, onPress, type, size, disabled }: ButtonProps) => (
 );
 
 Button.defaultProps = {
-  type: "primary",
+  type: 'primary',
   disabled: false,
-  size: "medium"
+  size: 'medium',
+  onPress: () => {},
 };
 
 export default Button;

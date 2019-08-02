@@ -1,24 +1,24 @@
 import {
   createStackNavigator,
   StackNavigatorConfig,
-  NavigationScreenProp
-} from "react-navigation";
+  NavigationScreenProp,
+} from 'react-navigation';
 
-import SignIn from "../screens/authentication";
-import { styles } from "./styles";
+import SignIn from '../screens/authentication';
+import { styles } from './styles';
 
 const defaultNavigationOptions = ({
-  navigation
+  navigation,
 }: {
   navigation: NavigationScreenProp<any>;
 }) => ({
   headerTitle: navigation.state.routeName,
   headerTitleStyle: styles.headerTitle,
-  headerStyle: styles.headerStyle
+  headerStyle: styles.headerStyle,
 });
 
 const stackConfig: StackNavigatorConfig = {
-  defaultNavigationOptions
+  defaultNavigationOptions,
 };
 
 export const AuthStack = createStackNavigator(
@@ -26,9 +26,9 @@ export const AuthStack = createStackNavigator(
     SignIn: {
       screen: SignIn,
       navigationOptions: {
-        headerTitle: "Sign In"
-      }
-    }
+        headerTitle: 'Sign In',
+      },
+    },
   },
-  stackConfig
+  stackConfig,
 );
