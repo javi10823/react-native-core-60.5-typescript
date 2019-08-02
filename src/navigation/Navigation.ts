@@ -5,8 +5,8 @@ import {
   NavigationContainer,
   NavigationDispatch,
   NavigationActions,
-  StackActions
-} from "react-navigation";
+  StackActions,
+} from 'react-navigation';
 
 export type CustomNavigationContainer = {
   dispatch: NavigationDispatch;
@@ -20,8 +20,9 @@ export type CustomNavigationContainer = {
     them to the corresponding screen in the NavigateAction below 
   */
 export type NavigateAction =
-  | { routeName: "Welcome"; params?: NavigationParams }
-  | { routeName: "Components"; params?: NavigationParams };
+  | { routeName: 'Welcome'; params?: NavigationParams }
+  | { routeName: 'SignIn'; params?: NavigationParams }
+  | { routeName: 'Components'; params?: NavigationParams };
 let navigator: CustomNavigationContainer;
 
 function setTopLevelNavigator(navigatorRef: CustomNavigationContainer) {
@@ -35,8 +36,8 @@ export function navigate({ routeName, params }: NavigateAction) {
   navigator.dispatch(
     NavigationActions.navigate({
       routeName,
-      params
-    })
+      params,
+    }),
   );
 }
 
@@ -51,15 +52,15 @@ function reset(routeName: string, params: NavigationParams) {
       actions: [
         NavigationActions.navigate({
           routeName,
-          params
-        })
-      ]
-    })
+          params,
+        }),
+      ],
+    }),
   );
 }
 
 function getActiveRouteParams(
-  navigationState: NavigationState | NavigationRoute
+  navigationState: NavigationState | NavigationRoute,
 ): NavigationParams | undefined {
   if (!navigationState) navigationState = navigator.state.nav;
   const route = navigationState.routes[navigationState.index];
@@ -71,7 +72,7 @@ function getActiveRouteParams(
 }
 
 function getActiveRouteName(
-  navigationState: NavigationState | NavigationRoute
+  navigationState: NavigationState | NavigationRoute,
 ): string {
   if (!navigationState) navigationState = navigator.state.nav;
   const route = navigationState.routes[navigationState.index];
@@ -88,5 +89,5 @@ export default {
   goBack,
   reset,
   getActiveRouteName,
-  getActiveRouteParams
+  getActiveRouteParams,
 };

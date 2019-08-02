@@ -5,20 +5,20 @@
 import {
   ACTION_TYPE_EXAMPLE,
   PayloadExample,
-  ExampleActionTypes
-} from "../types";
+  ExampleActionTypes,
+} from '../types';
 
-import { Action } from "redux";
-import { ThunkAction } from "redux-thunk";
-import { State as AppState } from "../../reducers/exampleApi/exampleApi";
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { State as AppState } from '../../reducers/exampleApi/exampleApi';
 
 // TypeScript infers that this function is returning ExampleAction
 export function actionExample(
-  payloadExample: PayloadExample
+  payloadExample: PayloadExample,
 ): ExampleActionTypes {
   return {
     type: ACTION_TYPE_EXAMPLE,
-    payload: payloadExample
+    payload: payloadExample,
   };
 }
 
@@ -31,13 +31,13 @@ function exampleAPICall(params: ParamsExample) {
   console.log(params);
 
   return Promise.resolve({
-    user: "user",
-    id: 1
+    user: 'user',
+    id: 1,
   });
 }
 
 export const thunkActionApiExample = (
-  params: ParamsExample
+  params: ParamsExample,
 ): ThunkAction<void, AppState, null, Action<string>> => async dispatch => {
   const asyncResp = await exampleAPICall(params);
   dispatch(actionExample(asyncResp));

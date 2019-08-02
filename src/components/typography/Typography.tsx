@@ -1,36 +1,32 @@
-import React from "react";
+import React from 'react';
 
-import { StyledText } from "./styles";
-import { theme } from "../../utils/Colors";
+import { StyledText } from './styles';
+import { theme } from '../../styled';
 
-export enum TypographyVariant {
-  Regular = "nunito-regular",
-  Bold = "nunito-bold",
-  ExtraBold = "nunito-extraBold",
-  Light = "nunito-light"
-}
+export const TypographyVariant = {
+  regular: 'nunito-regular',
+  bold: 'nunito-bold',
+  extraBold: 'nunito-extraBold',
+  light: 'nunito-light',
+};
 
 export interface TypographyProps {
   color: keyof typeof theme.text;
-  variant: TypographyVariant;
-  children?: React.ReactNode;
-  textAlign?: "left" | "right" | "center";
-  ellipsizeMode?: "head" | "middle" | "tail" | "clip";
+  variant: keyof typeof TypographyVariant;
+  children: React.ReactNode;
+  textAlign: 'left' | 'right' | 'center';
   size: number;
-  numberOfLines: number;
 }
 
 const Typography = ({ children, ...props }: TypographyProps) =>
   !children ? null : <StyledText {...props}>{children}</StyledText>;
 
 Typography.defaultProps = {
-  TypographyVariant: "regular",
-  color: "primary",
-  textAlign: "left",
-  style: null,
-  ellipsizeMode: "tail",
+  variant: 'regular',
+  color: 'primary',
+  textAlign: 'left',
   children: null,
-  size: 12
+  size: 12,
 };
 
 export default Typography;

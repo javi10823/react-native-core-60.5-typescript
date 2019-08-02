@@ -1,5 +1,7 @@
 src/assets
 node_modules
+.expo
 .gitlab
-ios
-android
+sr/coverage/
+flow-typed
+Example/node_modules

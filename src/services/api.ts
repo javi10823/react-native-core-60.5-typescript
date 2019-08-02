@@ -18,21 +18,21 @@ interface ResponseType {
 const apiRequest = ({ type, params }: ApiRequestParams) => ({
   type: `${type}_REQUEST`,
   requestType: type,
-  params
+  params,
 });
 
 const apiResponse = ({ type, params, response }: ApiResponseParams) => ({
   type: `${type}_RESPONSE`,
   requestType: type,
   payload: response,
-  params
+  params,
 });
 
 const apiError = ({ type, params, error }: ApiErrorParams) => ({
   type: `${type}_ERROR`,
   requestType: type,
   params,
-  error: { error, type }
+  error: { error, type },
 });
 
 interface RequestApiParams {
@@ -46,7 +46,7 @@ export const requestApi = ({
   type,
   method,
   params,
-  authenticated = false
+  authenticated = false,
 }: RequestApiParams) => async (dispatch: any, getState: any) => {
   try {
     dispatch(apiRequest({ type, params }));

@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-import rootReducer from "../reducers";
+import rootReducer from '../reducers';
 
-import { getConfig } from "../config";
+import { getConfig } from '../config';
 
 function getMiddlewares() {
   const middlewares = [thunk];
@@ -11,7 +11,7 @@ function getMiddlewares() {
   const config = getConfig();
 
   if (config.isDev) {
-    const { logger } = require("redux-logger");
+    const { logger } = require('redux-logger');
     middlewares.push(logger);
   }
 
@@ -20,5 +20,7 @@ function getMiddlewares() {
 
 export const store = createStore(
   rootReducer,
-  applyMiddleware(...getMiddlewares())
+  applyMiddleware(...getMiddlewares()),
 );
+
+export type Store = ReturnType<typeof rootReducer>;

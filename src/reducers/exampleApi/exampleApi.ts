@@ -1,20 +1,20 @@
 import {
   ACTION_TYPE_EXAMPLE,
   ExampleActionTypes,
-  PayloadExample
-} from "../../actions/types";
+  PayloadExample,
+} from '../../actions/types';
 
 export interface State {
   item?: PayloadExample;
 }
 
 const INITIAL_STATE: State = {
-  item: undefined
+  item: undefined,
 };
 
 export default (
   state: State = INITIAL_STATE,
-  action: ExampleActionTypes
+  action: ExampleActionTypes,
 ): State => {
   switch (action.type) {
     case ACTION_TYPE_EXAMPLE:
