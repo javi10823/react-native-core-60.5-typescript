@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import example, { ExampleInitialState } from './example/example';
 
-import example, { State as AppState } from './exampleApi/exampleApi';
-import auth from './auth/auth';
-
-export interface State {
-  example: AppState;
+interface State {
+  example: ExampleInitialState;
+  form: object;
 }
 
-export default combineReducers({
-  form: formReducer,
+const State = combineReducers({
   example,
-  auth,
+  form: formReducer,
 });
+
+export default State;

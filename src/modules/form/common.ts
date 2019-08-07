@@ -8,7 +8,7 @@ export const validator = (schema: Schema<any>) => async (formValues: any) => {
   } catch (e) {
     console.log(e);
     throw e.inner.reduce(
-      (errors: any, err: any) => ({
+      (errors, err) => ({
         ...errors,
         [err.path]: err.message,
       }),
