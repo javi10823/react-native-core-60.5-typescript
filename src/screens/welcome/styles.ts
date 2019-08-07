@@ -17,6 +17,6 @@ export const WelcomeImage = styled.Image`
 `;
 
 export const Title = styled(Typography)`
-  margin: ${responsiveSize(40)}px;
+  margin: ${responsiveSize(20)}px;
   text-align: center;
 `;
