@@ -26,6 +26,11 @@ $ yarn install
 $ cd ios && pod install
 ```
 
+## VSCode extensions
+
+- Prettier
+- TSLint
+
 ## Create the .env file
 
 The content of each key was added in 1Passord for security purposes
