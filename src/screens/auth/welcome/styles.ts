@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
-import Typography from '../../components/typography';
-import { responsiveSize } from '../../utils/dimensions';
-import { theme } from '../../styled';
+import Typography from '../../../components/typography';
+import { responsiveSize } from '../../../utils/dimensions';
+import { theme } from '../../../styled';
 
 export const Container = styled.SafeAreaView`
   flex: 1;

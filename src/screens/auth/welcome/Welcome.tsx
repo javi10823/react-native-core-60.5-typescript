@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { Container, WelcomeImage, Title } from './styles';
-import Navigation from '../../navigation';
-import Button from '../../components/button';
-import { fetchExample } from '../../actions/example';
-import State from '../../reducers';
+import Navigation from '../../../navigation';
+import Button from '../../../components/button';
+import { fetchExample } from '../../../actions/example';
+import State from '../../../reducers';
 
-const IMG_WELCOME = require('../../assets/images/logo.png');
+const IMG_WELCOME = require('../../../assets/images/logo.png');
 
 interface WelcomeProps {
   fetchExample: Function;
@@ -25,9 +25,7 @@ const Welcome = ({ fetchExample, exampleData }: WelcomeProps) => {
     }
   });
 
-  const goToSignIn = () => {
-    Navigation.navigate({ routeName: 'SignIn' });
-  };
+  const goToSignIn = () => Navigation.navigate({ routeName: 'SignIn' });
 
   return (
     <Container>
@@ -57,7 +55,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Welcome);
-
-Welcome.navigationOptions = {
-  header: null,
-};
