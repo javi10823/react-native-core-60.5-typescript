@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { responsiveSize } from '../../../utils/dimensions';
+import { rs } from '../../../styled';
 
 export const Container = styled.SafeAreaView(() => ({
   flex: 1,
@@ -8,6 +8,6 @@ export const Container = styled.SafeAreaView(() => ({
   alignItems: 'center',
 }));
 
-export const Spacing = styled.View((props: { size?: number }) => ({
-  height: responsiveSize(props.size || 10),
+export const Spacing = styled.View((p: any) => ({
+  height: rs(p.size || 10),
 }));

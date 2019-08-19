@@ -1,22 +1,12 @@
 import { createAction } from 'redux-actions';
 
-import {
-  FETCH_EXAMPLE_START,
-  FETCH_EXAMPLE_SUCCESS,
-  FETCH_EXAMPLE_ERROR,
-} from './types';
+import { FETCH_EXAMPLE_START, FETCH_EXAMPLE_SUCCESS, FETCH_EXAMPLE_ERROR } from './types';
 
 import ExampleService from '../provider/example/exampleService';
 
 export const fetchExampleStart = createAction(FETCH_EXAMPLE_START);
-export const fetchExampleSuccess = createAction(
-  FETCH_EXAMPLE_SUCCESS,
-  data => data,
-);
-export const fetchExampleError = createAction(
-  FETCH_EXAMPLE_ERROR,
-  error => error,
-);
+export const fetchExampleSuccess = createAction(FETCH_EXAMPLE_SUCCESS, data => data);
+export const fetchExampleError = createAction(FETCH_EXAMPLE_ERROR, error => error);
 
 export function fetchExample() {
   return async (dispatch, getState) => {

@@ -8,7 +8,7 @@ import { Store } from '../../../store';
 import * as Form from '../../../modules/form';
 import { Typography, Button } from '../../../components';
 
-import { Container, Spacing } from './styled';
+import { Container, Spacing } from './styles';
 
 interface Values {
   username: string;
@@ -64,17 +64,8 @@ class SignInScreen extends React.Component<Props, State> {
         <Typography color="black" size={18}>
           Enter your account data
         </Typography>
-        <Form.TextField
-          name="username"
-          label="Email"
-          keyboardType="email-address"
-        />
-        <Form.TextField
-          name="password"
-          label="Password"
-          secureTextEntry
-          keyboardType="default"
-        />
+        <Form.TextField name="username" label="Email" keyboardType="email-address" />
+        <Form.TextField name="password" label="Password" secureTextEntry keyboardType="default" />
         {error && (
           <Typography color="black" size={12} textAlign="center">
             Something went wrong. Please try again later

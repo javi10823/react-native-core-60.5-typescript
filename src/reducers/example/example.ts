@@ -1,9 +1,5 @@
 import { handleActions } from 'redux-actions';
-import {
-  fetchExampleStart,
-  fetchExampleSuccess,
-  fetchExampleError,
-} from '../../actions/example';
+import { fetchExampleStart, fetchExampleSuccess, fetchExampleError } from '../../actions/example';
 
 export interface ExampleInitialState {
   exampleData: object;

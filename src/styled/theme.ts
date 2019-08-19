@@ -1,5 +1,3 @@
-import * as Dimensions from '../utils/dimensions';
-
 const tintColor = '#62d0cf';
 
 const color = {
@@ -33,10 +31,6 @@ export const theme = {
   ui: {
     error: 'red',
     primary: 'blue',
-  },
-  utils: {
-    px: Dimensions.responsiveSize,
-    normalize: Dimensions.normalize,
   },
 };
 

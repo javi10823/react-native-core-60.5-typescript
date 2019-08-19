@@ -1,4 +1,4 @@
-import { createStackNavigator, NavigationParams } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { SignIn, Welcome } from '../screens';
 
 const noHeader = { header: null };
@@ -14,6 +14,4 @@ export const AuthStack = createStackNavigator({
   },
 });
 
-export type AuthNavigateActions =
-  | { routeName: 'Welcome'; params?: NavigationParams }
-  | { routeName: 'SignIn'; params?: NavigationParams };
+export type AuthRoutes = 'Welcome' | 'SignIn';

@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextStyle } from 'react-native';
 
 import { StyledText } from './styles';
 import { theme } from '../../styled';
@@ -11,11 +12,12 @@ export const TypographyVariant = {
 };
 
 export interface TypographyProps {
-  color: keyof typeof theme.text;
+  color: any;
   variant: keyof typeof TypographyVariant;
   children: React.ReactNode;
   textAlign: 'left' | 'right' | 'center';
   size: number;
+  style: TextStyle;
 }
 
 const Typography = ({ children, ...props }: TypographyProps) =>
@@ -23,10 +25,11 @@ const Typography = ({ children, ...props }: TypographyProps) =>
 
 Typography.defaultProps = {
   variant: 'regular',
-  color: 'primary',
+  color: theme.text.primary,
   textAlign: 'left',
   children: null,
   size: 12,
+  style: {},
 };
 
 export default Typography;

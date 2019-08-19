@@ -24,11 +24,6 @@ export function responsiveSize(value: number) {
   return Math.round(value * REF_RATIO);
 }
 
-export function responsiveSizePlatForm(
-  iphoneSize: number,
-  androidSize: number,
-) {
-  return Platform.OS === 'ios'
-    ? responsiveSize(iphoneSize)
-    : responsiveSize(androidSize);
+export function responsiveSizePlatForm(iphoneSize: number, androidSize: number) {
+  return Platform.OS === 'ios' ? responsiveSize(iphoneSize) : responsiveSize(androidSize);
 }

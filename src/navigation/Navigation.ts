@@ -8,7 +8,7 @@ import {
   StackActions,
 } from 'react-navigation';
 
-import { NavigateAction } from './AppNavigator';
+import { Routes } from './AppNavigator';
 
 export type CustomNavigationContainer = {
   dispatch: NavigationDispatch;
@@ -23,7 +23,7 @@ function setTopLevelNavigator(navigatorRef: CustomNavigationContainer) {
   navigator = navigatorRef;
 }
 
-export function navigate({ routeName, params }: NavigateAction) {
+export function goToPage(routeName: Routes, params: NavigationParams | undefined = {}) {
   navigator.dispatch(
     NavigationActions.navigate({
       routeName,
@@ -32,7 +32,7 @@ export function navigate({ routeName, params }: NavigateAction) {
   );
 }
 
-function goBack(key: string | null = null) {
+export function goBack(key: string | null = null) {
   navigator.dispatch(NavigationActions.back({ key }));
 }
 
@@ -59,9 +59,7 @@ function getActiveRouteParams(
   return route.params;
 }
 
-function getActiveRouteName(
-  navigationState: NavigationState | NavigationRoute,
-): string {
+function getActiveRouteName(navigationState: NavigationState | NavigationRoute): string {
   if (!navigationState) navigationState = navigator.state.nav;
   const route = navigationState.routes[navigationState.index];
   if (route.routes) return getActiveRouteName(route);
@@ -69,7 +67,7 @@ function getActiveRouteName(
 }
 
 export default {
-  navigate,
+  goToPage,
   setTopLevelNavigator,
   goBack,
   reset,

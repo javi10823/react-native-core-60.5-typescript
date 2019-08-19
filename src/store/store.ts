@@ -11,9 +11,6 @@ function getMiddlewares() {
   return middlewares;
 }
 
-export const store = createStore(
-  rootReducer,
-  applyMiddleware(...getMiddlewares()),
-);
+export const store = createStore(rootReducer, applyMiddleware(...getMiddlewares()));
 
 export type Store = ReturnType<typeof rootReducer>;
