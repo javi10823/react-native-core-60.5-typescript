@@ -6,9 +6,10 @@ import * as yup from 'yup';
 
 import { Store } from '../../../store';
 import * as Form from '../../../modules/form';
-import { Typography, Button } from '../../../components';
+import { Typography, Button, BackButton, Spacing } from '../../../components';
 
-import { Container, Spacing } from './styles';
+import { Container, Content } from './styles';
+import { goBack } from '../../../navigation';
 
 interface Values {
   username: string;
@@ -59,23 +60,26 @@ class SignInScreen extends React.Component<Props, State> {
 
     return (
       <Container>
-        <Typography color="black" size={18}>
-          Enter your account data
-        </Typography>
-        <Form.TextField name="username" label="Email" keyboardType="email-address" />
-        <Form.TextField name="password" label="Password" secureTextEntry keyboardType="default" />
-        {error && (
-          <Typography color="black" size={12} textAlign="center">
-            Something went wrong. Please try again later
+        <BackButton onPress={() => goBack()} text="SignIn" />
+        <Content>
+          <Typography color="black" size={18}>
+            Enter your account data
           </Typography>
-        )}
-        <Spacing />
-        <Button
-          size="big"
-          text={loading ? 'Loading...' : 'Sign In'}
-          disabled={actionDisabled || loading}
-          onPress={!actionDisabled ? this.onLogInPressed : this.validateFields}
-        />
+          <Form.TextField name="username" label="Email" keyboardType="email-address" />
+          <Form.TextField name="password" label="Password" secureTextEntry keyboardType="default" />
+          {error && (
+            <Typography color="black" size={12} textAlign="center">
+              Something went wrong. Please try again later
+            </Typography>
+          )}
+          <Spacing />
+          <Button
+            size="big"
+            text={loading ? 'Loading...' : 'Sign In'}
+            disabled={actionDisabled || loading}
+            onPress={!actionDisabled ? this.onLogInPressed : this.validateFields}
+          />
+        </Content>
       </Container>
     );
   }
