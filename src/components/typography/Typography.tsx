@@ -12,7 +12,7 @@ export const TypographyVariant = {
 };
 
 export interface TypographyProps {
-  color: any;
+  color: keyof typeof theme.text;
   variant: keyof typeof TypographyVariant;
   children: React.ReactNode;
   textAlign: 'left' | 'right' | 'center';
@@ -25,7 +25,7 @@ const Typography = ({ children, ...props }: TypographyProps) =>
 
 Typography.defaultProps = {
   variant: 'regular',
-  color: theme.text.primary,
+  color: 'primary',
   textAlign: 'left',
   children: null,
   size: 12,

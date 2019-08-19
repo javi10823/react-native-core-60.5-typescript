@@ -2,38 +2,6 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/CircularStd-Black.ttf",
-      "sha1": "82ea8302ccee9a4d0552caa11ecee9a10d9e03da"
-    },
-    {
-      "path": "src/assets/fonts/CircularStd-BlackItalic.ttf",
-      "sha1": "065ccba54bcc79f5ab9d71d04da572374a04f8d4"
-    },
-    {
-      "path": "src/assets/fonts/CircularStd-Bold.ttf",
-      "sha1": "63635c3247949b28647462f09ddbc2b002cedf47"
-    },
-    {
-      "path": "src/assets/fonts/CircularStd-BoldItalic.ttf",
-      "sha1": "1104da62a0bd2c475e5505a0863619323d3af331"
-    },
-    {
-      "path": "src/assets/fonts/CircularStd-Book.ttf",
-      "sha1": "b35cc95c84c51a96355b004dade9cc3866dc77f9"
-    },
-    {
-      "path": "src/assets/fonts/CircularStd-BookItalic.ttf",
-      "sha1": "53cdc97ff501c6bc7507905056845c42cc1a2d34"
-    },
-    {
-      "path": "src/assets/fonts/CircularStd-Medium.ttf",
-      "sha1": "f918a1ad36bb02d8519a24ddb3115e1fe05b15e6"
-    },
-    {
-      "path": "src/assets/fonts/CircularStd-MediumItalic.ttf",
-      "sha1": "f0a456c2406480897e8716375f068dea2cc24bcf"
-    },
-    {
       "path": "src/assets/fonts/Nunito-Bold.ttf",
       "sha1": "70292fbf4c935b218862ba27891d910a512f0197"
     },
@@ -48,14 +16,6 @@
     {
       "path": "src/assets/fonts/Nunito-Regular.ttf",
       "sha1": "b1029b1d966d1732e6241677773393a313585fb3"
-    },
-    {
-      "path": "src/assets/fonts/Payment-Types.ttf",
-      "sha1": "c54264e93ddac9a69e15d87d47e2e219369fb62a"
-    },
-    {
-      "path": "src/assets/fonts/SpaceMono-Regular.ttf",
-      "sha1": "fae3a5a43b50e0408fd61e14383d94a023d332b0"
     }
   ]
 }

@@ -61,20 +61,10 @@
 	<string>Allow $(PRODUCT_NAME) to access your reminders</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>CircularStd-Black.ttf</string>
-		<string>CircularStd-BlackItalic.ttf</string>
-		<string>CircularStd-Bold.ttf</string>
-		<string>CircularStd-BoldItalic.ttf</string>
-		<string>CircularStd-Book.ttf</string>
-		<string>CircularStd-BookItalic.ttf</string>
-		<string>CircularStd-Medium.ttf</string>
-		<string>CircularStd-MediumItalic.ttf</string>
 		<string>Nunito-Bold.ttf</string>
 		<string>Nunito-ExtraBold.ttf</string>
 		<string>Nunito-Light.ttf</string>
 		<string>Nunito-Regular.ttf</string>
-		<string>Payment-Types.ttf</string>
-		<string>SpaceMono-Regular.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>

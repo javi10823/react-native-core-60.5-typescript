@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
 import { nlz } from '../../styled';
 import { Icon, Typography, Container, IconContainer, TextContainer } from './styles';
 import { theme } from '../../styled/theme';
 
 interface Props {
   text: string;
-  style: object;
-  iconStyle: object;
+  style: ViewStyle;
+  iconStyle: TextStyle;
   textSize: number;
   size: number;
-  iconColor: string;
+  iconColor: keyof typeof theme.text | keyof typeof theme.color | keyof typeof theme.ui;
   onPress: () => void;
-  textColor: string;
+  textColor: keyof typeof theme.text;
 }
 
 const BackButton = ({
@@ -50,7 +50,7 @@ BackButton.defaultProps = {
   textSize: 18,
   size: 20,
   iconColor: theme.text.primary,
-  textColor: theme.text.primary,
+  textColor: 'primary',
   onPress: () => {},
 };
 
