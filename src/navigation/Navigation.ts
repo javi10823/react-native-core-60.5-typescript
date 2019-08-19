@@ -32,11 +32,17 @@ export function goToPage(routeName: Routes, params: NavigationParams | undefined
   );
 }
 
-export function goBack(key: string | null = null) {
-  navigator.dispatch(NavigationActions.back({ key }));
+export function initApp(routeName: Routes, params: NavigationParams | undefined = {}) {
+  navigator.dispatch(
+    NavigationActions.navigate({
+      routeName,
+      params,
+    }),
+  );
+  resetStack(routeName, params);
 }
 
-function reset(routeName: string, params: NavigationParams) {
+export function resetStack(routeName: Routes, params: NavigationParams | undefined = {}) {
   navigator.dispatch(
     StackActions.reset({
       index: 0,
@@ -48,6 +54,10 @@ function reset(routeName: string, params: NavigationParams) {
       ],
     }),
   );
+}
+
+export function goBack(key: string | null = null) {
+  navigator.dispatch(NavigationActions.back({ key }));
 }
 
 function getActiveRouteParams(
@@ -70,7 +80,8 @@ export default {
   goToPage,
   setTopLevelNavigator,
   goBack,
-  reset,
+  initApp,
+  resetStack,
   getActiveRouteName,
   getActiveRouteParams,
 };

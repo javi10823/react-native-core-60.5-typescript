@@ -1,4 +1,5 @@
 // SCREENS FROM AUTH ────────────────────────────────────────────────────────────────────────────────
+export { default as Initializing } from './auth/initializing';
 export { default as SignIn } from './auth/signIn';
 export { default as Welcome } from './auth/welcome';
 // SCREENS FROM MAIN ────────────────────────────────────────────────────────────────────────────────

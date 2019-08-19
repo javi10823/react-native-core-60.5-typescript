@@ -13,7 +13,7 @@ const Welcome = () => {
       <Title color="primary" variant="bold" size={14}>
         {`REACT NATIVE TYPESCRIPT\nNEXTDOTS v0.59.9 AUGUST 2019`}
       </Title>
-      <Button size="big" text="Start" onPress={() => goToPage('Home')} />
+      <Button size="big" text="SignIn" onPress={() => goToPage('SignIn')} />
     </Container>
   );
 };

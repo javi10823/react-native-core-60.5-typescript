@@ -11,7 +11,7 @@ const color = {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  opacityBackground: 'rgba(74,74,74,0.78)',
+  opacityBackground: '#00000080',
   primary: '#00dcda',
   white: 'white',
   primaryButton: 'rgb(65,176,202)',

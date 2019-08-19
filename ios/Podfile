@@ -27,6 +27,8 @@ target 'CoreMobile' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'CoreMobileTests' do
     inherit! :search_paths
   end

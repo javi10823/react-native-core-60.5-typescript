@@ -41,6 +41,7 @@
     ]
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.6.1",
     "react": "16.8.3",
     "react-native": "0.59.9",
     "react-native-dotenv": "^0.2.0",

@@ -9,7 +9,8 @@ import * as Form from '../../../modules/form';
 import { Typography, Button, BackButton, Spacing } from '../../../components';
 
 import { Container, Content } from './styles';
-import { goBack } from '../../../navigation';
+import { goBack, goToPage } from '../../../navigation';
+import { logIn } from '../../../actions/auth';
 
 interface Values {
   username: string;
@@ -18,9 +19,18 @@ interface Values {
 
 type StoreProps = ReturnType<typeof mapStateToProps>;
 
-type FormProps = InjectedFormProps<Values, StoreProps>;
+type ConnectProps = StoreProps & {
+  logIn: Function;
+};
 
-type Props = StoreProps & FormProps;
+type FormProps = InjectedFormProps<Values, ConnectProps>;
+
+type Props = ConnectProps & FormProps;
+
+interface State {
+  loading: boolean;
+  error: boolean;
+}
 
 interface State {
   loading: boolean;
@@ -36,15 +46,15 @@ class SignInScreen extends React.Component<Props, State> {
     error: false,
   };
 
-  onLogInPressed = () => {
-    const { loginForm } = this.props;
+  onLogInPressed = async () => {
+    const { loginForm, logIn } = this.props;
     this.setState({ loading: true, error: false });
+    await logIn();
 
-    setTimeout(() => {
-      this.setState({ loading: false });
-      const { username, password } = loginForm.values;
-      Alert.alert(username + ' ' + password);
-    }, 2000);
+    this.setState({ loading: false });
+    const { username } = loginForm.values;
+    Alert.alert('Welcome ' + username + '!');
+    goToPage('Home');
   };
 
   validateFields = () => {
@@ -100,11 +110,15 @@ function mapStateToProps(store: Store) {
   };
 }
 
+const mapDispatchToProps = (dispatch: Function) => ({
+  logIn: () => dispatch(logIn()),
+});
+
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(
-  reduxForm<Values, StoreProps>({
+  reduxForm<Values, ConnectProps>({
     form: 'login',
     destroyOnUnmount: true,
     asyncValidate: Form.validator(VALIDATION_SCHEMA),

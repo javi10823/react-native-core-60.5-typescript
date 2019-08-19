@@ -1,9 +1,13 @@
 import { createStackNavigator } from 'react-navigation';
-import { SignIn, Welcome } from '../screens';
+import { SignIn, Welcome, Initializing } from '../screens';
 
 const noHeader = { header: null };
 
 const stack = {
+  Initializing: {
+    screen: Initializing,
+    navigationOptions: noHeader,
+  },
   Welcome: {
     screen: Welcome,
     navigationOptions: noHeader,
