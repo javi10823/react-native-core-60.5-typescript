@@ -47,7 +47,7 @@ There is a `.env.example` file in the root of the project, you have to rename to
 
 ## Utils
 
-- RUN `yarn ts` for typescript live reload check (Compile ts project)
+- Execute `yarn run ts` for typescript live reload check (Compile ts project)
 - Use [react-native-elements](https://react-native-training.github.io/react-native-elements/docs/overview.html)
 
 ## Libreries used
