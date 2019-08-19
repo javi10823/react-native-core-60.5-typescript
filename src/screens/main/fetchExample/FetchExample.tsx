@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 
@@ -11,37 +11,40 @@ import { goBack } from '../../../navigation';
 interface Props {
   fetchExample: Function;
   exampleData: any;
+  fetchExampleError: string;
+  fetchExampleIsLoading: boolean;
 }
 
-const FetchExample = ({ fetchExample, exampleData }: Props) => {
-  const mounted: any = useRef();
-  useEffect(() => {
-    if (!mounted.current /* componentDidMount */) {
-      mounted.current = true;
-      fetchExample();
-    } /* componentDidUpdate */ else {
-      console.log(`\n\n`, 'exampleData', exampleData, `\n\n\n`);
-    }
-  });
+class FetchExample extends React.Component<Props, State> {
+  async componentDidMount() {
+    const { fetchExample } = this.props;
+    await fetchExample();
+  }
 
-  return (
-    <Container>
-      <BackButton onPress={() => goBack()} text="FetchExample" />
-      {exampleData ? (
-        <JSONContainer>
-          <ScrollView>
-            <Typography>{JSON.stringify(exampleData, null, 2)}</Typography>
-          </ScrollView>
-        </JSONContainer>
-      ) : (
-        <EmptyContent />
-      )}
-    </Container>
-  );
-};
+  render() {
+    const { exampleData, fetchExampleError, fetchExampleIsLoading } = this.props;
+
+    return (
+      <Container>
+        <BackButton onPress={() => goBack()} text="FetchExample" />
+        {fetchExampleIsLoading || fetchExampleError ? (
+          <EmptyContent text={fetchExampleError} />
+        ) : (
+          <JSONContainer>
+            <ScrollView>
+              <Typography>{JSON.stringify(exampleData, null, 2)}</Typography>
+            </ScrollView>
+          </JSONContainer>
+        )}
+      </Container>
+    );
+  }
+}
 
 const mapStateToProps = (state: State) => ({
   exampleData: state.example.exampleData,
+  fetchExampleError: state.example.fetchExampleError,
+  fetchExampleIsLoading: state.example.fetchExampleIsLoading,
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({

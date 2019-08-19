@@ -4,7 +4,7 @@ import { fetchExampleStart, fetchExampleSuccess, fetchExampleError } from '../..
 export interface ExampleInitialState {
   exampleData: object;
   fetchExampleIsLoading: boolean;
-  fetchExampleError;
+  fetchExampleError: string;
 }
 
 const ExampleInitialState = {
