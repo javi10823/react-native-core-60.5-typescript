@@ -8,6 +8,8 @@ import {
   StackActions,
 } from 'react-navigation';
 
+import { Routes } from './AppNavigator';
+
 export type CustomNavigationContainer = {
   dispatch: NavigationDispatch;
   state: {
@@ -15,24 +17,13 @@ export type CustomNavigationContainer = {
   };
 } & NavigationContainer;
 
-/* 
-    Type your screen params as you need it and add 
-    them to the corresponding screen in the NavigateAction below 
-  */
-export type NavigateAction =
-  | { routeName: 'Welcome'; params?: NavigationParams }
-  | { routeName: 'SignIn'; params?: NavigationParams }
-  | { routeName: 'Components'; params?: NavigationParams };
 let navigator: CustomNavigationContainer;
 
 function setTopLevelNavigator(navigatorRef: CustomNavigationContainer) {
   navigator = navigatorRef;
 }
 
-/**
- * Navigate to a new screen. Make sure to type your screen here so it's available for navigation
- */
-export function navigate({ routeName, params }: NavigateAction) {
+export function goToPage(routeName: Routes, params: NavigationParams | undefined = {}) {
   navigator.dispatch(
     NavigationActions.navigate({
       routeName,
@@ -41,7 +32,7 @@ export function navigate({ routeName, params }: NavigateAction) {
   );
 }
 
-function goBack(key: string | null = null) {
+export function goBack(key: string | null = null) {
   navigator.dispatch(NavigationActions.back({ key }));
 }
 
@@ -64,27 +55,19 @@ function getActiveRouteParams(
 ): NavigationParams | undefined {
   if (!navigationState) navigationState = navigator.state.nav;
   const route = navigationState.routes[navigationState.index];
-
-  // dive into nested navigators
   if (route.routes) return getActiveRouteParams(route);
-
   return route.params;
 }
 
-function getActiveRouteName(
-  navigationState: NavigationState | NavigationRoute,
-): string {
+function getActiveRouteName(navigationState: NavigationState | NavigationRoute): string {
   if (!navigationState) navigationState = navigator.state.nav;
   const route = navigationState.routes[navigationState.index];
-
-  // dive into nested navigators
   if (route.routes) return getActiveRouteName(route);
-
   return route.routeName;
 }
 
 export default {
-  navigate,
+  goToPage,
   setTopLevelNavigator,
   goBack,
   reset,

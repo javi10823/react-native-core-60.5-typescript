@@ -25,6 +25,8 @@ target 'CoreMobile' do
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'CoreMobileTests' do
     inherit! :search_paths
   end

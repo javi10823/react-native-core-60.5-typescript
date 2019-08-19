@@ -15,12 +15,7 @@ interface ButtonProps {
 }
 
 const Button = ({ text, onPress, type, size, disabled }: ButtonProps) => (
-  <ButtonTouchable
-    type={type}
-    onPress={onPress}
-    disabled={disabled}
-    size={size}
-  >
+  <ButtonTouchable type={type} onPress={onPress} disabled={disabled} size={size}>
     <Title type={type}>{text}</Title>
   </ButtonTouchable>
 );

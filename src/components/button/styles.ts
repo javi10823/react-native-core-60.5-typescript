@@ -1,7 +1,7 @@
 import { TextProps, TouchableOpacityProps } from 'react-native';
 import styled, { css } from 'styled-components/native';
-import { responsiveSize } from '../../utils/dimensions';
 import { Type, Size } from './Button';
+import { rs } from '../../styled';
 
 type TitleProps = {
   type: Type;
@@ -16,13 +16,10 @@ type ButtonTouchableProps = {
 const getTypeStyle = (type: Type, disabled: boolean) =>
   ({
     primary: css`
-      background-color: ${p =>
-        disabled ? p.theme.color.inactive : p.theme.color.lightBlue};
-      /* you can pass other type specific styles here */
+      background-color: ${p => (disabled ? p.theme.color.inactive : p.theme.color.lightBlue)};
     `,
     secondary: css`
       background-color: transparent;
-      /* you can pass other type specific styles here */
     `,
   }[type]);
 
@@ -53,31 +50,19 @@ function getTextStyle(type: Type) {
   }[type];
 }
 
-/* 
-    We can consider moving responsiveSize utility to theme, name it as 'px' and use it as follows:
-  
-    height: ${props => props.theme.px(55)} 
-    or even shorter
-    height: ${p => p.theme.px(55)} 
-  
-    It will allow us to not import this util on every file.
-    We can have quick access in theme property.
-    responsiveSize is used only in styles so it's good to have it in styled-components theme
-*/
-
 export const ButtonTouchable = styled.TouchableOpacity<ButtonTouchableProps>`
   justify-content: center;
-  padding: ${responsiveSize(5)}px;
-  border-radius: ${responsiveSize(10)}px;
-  height: ${responsiveSize(55)}px;
+  padding: ${rs(5)}px;
+  border-radius: ${rs(10)}px;
+  height: ${rs(55)}px;
 
-  ${props => getTypeStyle(props.type, props.disabled)};
-  ${props => getSizeStyle(props.size)};
+  ${p => getTypeStyle(p.type, p.disabled)};
+  ${p => getSizeStyle(p.size)};
 `;
 
 export const Title = styled.Text<TitleProps>`
   text-align: center;
   font-size: 16px;
 
-  ${props => getTextStyle(props.type)}
+  ${p => getTextStyle(p.type)}
 `;

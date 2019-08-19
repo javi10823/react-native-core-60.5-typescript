@@ -1,4 +1,5 @@
 import Logger from './logger';
+import config from '../config';
 
 const logger = new Logger('api-connector');
 
@@ -45,6 +46,41 @@ export default class APIConnector {
   _timeout;
   _requestUpload: Function;
 
+  static _requestUpload(uri: string, options: Record<string, any>, uploadFormData: FormData) {
+    const formData = uploadFormData;
+    const time = +new Date();
+
+    return new Promise((resolve: Function, reject: Function) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open(options.method, uri);
+
+      if (options.headers['X-Session']) {
+        xhr.setRequestHeader('X-Session', options.headers['X-Session']);
+      }
+      xhr.setRequestHeader('X-ApiKey', options.headers['X-ApiKey']);
+      xhr.setRequestHeader('X-RequestId', options.headers['X-RequestId']);
+      xhr.setRequestHeader('X-TrackingId', options.headers['X-TrackingId']);
+      xhr.onload = () => {
+        if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+          logger.info(`request ${options.method}: ${uri} completed, took: ${+new Date() - time}ms`);
+        }
+        if (xhr.status !== 200) {
+          reject(new Error(JSON.stringify({ code: xhr.status, message: xhr.responseText })));
+        }
+        if (!xhr.responseText) {
+          console.log('Upload failed No response payload.'); // eslint-disable-line no-console
+          reject(new Error(JSON.stringify({ code: 500, message: xhr.responseText })));
+        }
+        const index = xhr.responseText.indexOf('arcor.com');
+        if (index !== -1) {
+          reject(new Error(JSON.stringify({ code: 500, message: xhr.responseText })));
+        }
+        resolve(xhr.responseText);
+      };
+      xhr.send(formData);
+    });
+  }
+
   constructor(options: any = {}) {
     const { timeout = 0 } = options;
 
@@ -72,27 +108,27 @@ export default class APIConnector {
     return Errors;
   }
 
-  head(uri: string, args = {}): Function {
+  head(uri: string, args = {}): void {
     return this._request(uri, { ...args, method: Methods.HEAD });
   }
 
-  get(uri: string, args = {}): Function {
+  get(uri: string, args = {}): void {
     return this._request(uri, { ...args, method: Methods.GET });
   }
 
-  post(uri: string, args = {}): Function {
+  post(uri: string, args = {}): void {
     return this._request(uri, { ...args, method: Methods.POST });
   }
 
-  put(uri: string, args = {}): Function {
+  put(uri: string, args = {}): void {
     return this._request(uri, { ...args, method: Methods.PUT });
   }
 
-  patch(uri: string, args = {}): Function {
+  patch(uri: string, args = {}): void {
     return this._request(uri, { ...args, method: Methods.PATCH });
   }
 
-  delete(uri: string, args = {}): Function {
+  delete(uri: string, args = {}): void {
     return this._request(uri, { ...args, method: Methods.DELETE });
   }
 
@@ -100,25 +136,29 @@ export default class APIConnector {
     const { method, headers = {}, body, emptyResponse, uploadFormData } = args;
     let { checkResponseCode } = args;
 
-    if (!uri || uri instanceof String)
-      return logger.error(`No valid uri given for method ${method}`) && this;
+    if (!uri || uri instanceof String) {
+      if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+        return logger.error(`No valid uri given for method ${method}`) && this;
+      }
+      return this;
+    }
 
     const options = {
-      method: method,
+      method,
       headers: { ...this._defaultHeaders, ...headers },
       body,
     };
     if (!body) delete options.body;
 
     const time = +new Date();
-    const bodyLog = options.body
-      ? ` & body: ${JSON.stringify(options.body).substr(0, 80)}...`
-      : '';
-    logger.info(
-      `request ${options.method}: ${uri} sent, headers: ${JSON.stringify(
-        options.headers,
-      )}${bodyLog}`,
-    );
+    const bodyLog = options.body ? ` & body: ${JSON.stringify(options.body).substr(0, 80)}...` : '';
+    if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+      logger.info(
+        `request ${options.method}: ${uri} sent, headers: ${JSON.stringify(
+          options.headers,
+        )}${bodyLog}`,
+      );
+    }
 
     if (uploadFormData) {
       return this._requestUpload(uri, options, uploadFormData);
@@ -133,9 +173,9 @@ export default class APIConnector {
           timeoutReached = true;
           const err: any = new TypeError(Errors.TIMEOUT_MSG);
           err.code = Errors.TIMEOUT;
-          logger.info(
-            `request ${method}: ${uri} timeout after ${+new Date() - time}ms`,
-          );
+          if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+            logger.info(`request ${method}: ${uri} timeout after ${+new Date() - time}ms`);
+          }
           reject(err);
         }, this._timeout);
       }
@@ -143,34 +183,27 @@ export default class APIConnector {
       fetch(uri, options)
         .then(async (response: any) => {
           const response2 = response.clone();
-          console.log(`\n\n`);
-          console.log('_request', `\n`);
-          console.log('\t- uri', uri, `\n`);
-          console.log('\t- options', options, `\n`);
-          console.log('\t- response', await response2.json(), `\n\n\n`);
+          if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+            console.log(`\n\n`);
+            console.log('_request', `\n`);
+            console.log('\t- uri', uri, `\n`);
+            console.log('\t- options', options, `\n`);
+            console.log('\t- response', await response2.json(), `\n\n\n`);
+          }
 
           requestDone = true;
           if (timeoutReached) return;
-          logger.info(
-            `request ${method}: ${uri} completed, took: ${+new Date() -
-              time}ms`,
-          );
+          if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+            logger.info(`request ${method}: ${uri} completed, took: ${+new Date() - time}ms`);
+          }
 
           if (!response.ok && response.status === 503) {
-            reject(
-              new Error(
-                JSON.stringify({ code: 503, message: Errors.SERVERError_MSG }),
-              ),
-            );
+            reject(new Error(JSON.stringify({ code: 503, message: Errors.SERVERError_MSG })));
           }
 
           if (response && response.status === Errors.NOT_FOUND) {
             checkResponseCode = true;
-            reject(
-              new Error(
-                JSON.stringify({ code: 404, message: Errors.NOT_FOUND_MSG }),
-              ),
-            );
+            reject(new Error(JSON.stringify({ code: 404, message: Errors.NOT_FOUND_MSG })));
           }
 
           if (response && response.status === 500) {
@@ -238,18 +271,20 @@ export default class APIConnector {
         })
 
         .catch(err => {
-          console.log(`\n\n`);
-          console.log('_request', `\n`);
-          console.log(' - uri', uri, `\n`);
-          console.log(' - options', options, `\n`);
-          console.log(' - err', err, `\n\n\n`);
-
+          if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+            console.log(`\n\n`);
+            console.log('_request', `\n`);
+            console.log('\t- uri', uri, `\n`);
+            console.log('\t- options', options, `\n`);
+            console.log('\t- err', err, `\n\n\n`);
+          }
           requestDone = true;
           if (timeoutReached) return;
-          logger.error(
-            `request ${method}: ${uri} raised error: ${err}, took ${+new Date() -
-              time}ms`,
-          );
+          if (config.API_CONNECTOR_LOGS_ACTIVATED) {
+            logger.error(
+              `request ${method}: ${uri} raised error: ${err}, took ${+new Date() - time}ms`,
+            );
+          }
           if (err.message === Errors.NO_CONNECTION_MSG) {
             err.code = Errors.NO_CONNECTION;
           }
@@ -257,51 +292,4 @@ export default class APIConnector {
         });
     });
   };
-
-  static _requestUpload(
-    uri: string,
-    options: Record<string, any>,
-    uploadFormData: FormData,
-  ) {
-    const formData = uploadFormData;
-    const time = +new Date();
-
-    return new Promise((resolve: Function, reject: Function) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open(options.method, uri);
-
-      if (options.headers['X-Session'])
-        xhr.setRequestHeader('X-Session', options.headers['X-Session']);
-      xhr.setRequestHeader('X-ApiKey', options.headers['X-ApiKey']);
-      xhr.setRequestHeader('X-RequestId', options.headers['X-RequestId']);
-      xhr.setRequestHeader('X-TrackingId', options.headers['X-TrackingId']);
-      xhr.onload = () => {
-        logger.info(
-          `request ${options.method}: ${uri} completed, took: ${+new Date() -
-            time}ms`,
-        );
-        if (xhr.status !== 200) {
-          reject(
-            new Error(
-              JSON.stringify({ code: xhr.status, message: xhr.responseText }),
-            ),
-          );
-        }
-        if (!xhr.responseText) {
-          console.log('Upload failed No response payload.'); // eslint-disable-line no-console
-          reject(
-            new Error(JSON.stringify({ code: 500, message: xhr.responseText })),
-          );
-        }
-        const index = xhr.responseText.indexOf('arcor.com');
-        if (index !== -1) {
-          reject(
-            new Error(JSON.stringify({ code: 500, message: xhr.responseText })),
-          );
-        }
-        resolve(xhr.responseText);
-      };
-      xhr.send(formData);
-    });
-  }
 }

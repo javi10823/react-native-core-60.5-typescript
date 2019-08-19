@@ -1,34 +1,17 @@
-import {
-  createStackNavigator,
-  StackNavigatorConfig,
-  NavigationScreenProp,
-} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
+import { SignIn, Welcome } from '../screens';
 
-import SignIn from '../screens/authentication';
-import { styles } from './styles';
+const noHeader = { header: null };
 
-const defaultNavigationOptions = ({
-  navigation,
-}: {
-  navigation: NavigationScreenProp<any>;
-}) => ({
-  headerTitle: navigation.state.routeName,
-  headerTitleStyle: styles.headerTitle,
-  headerStyle: styles.headerStyle,
+export const AuthStack = createStackNavigator({
+  Welcome: {
+    screen: Welcome,
+    navigationOptions: noHeader,
+  },
+  SignIn: {
+    screen: SignIn,
+    navigationOptions: noHeader,
+  },
 });
 
-const stackConfig: StackNavigatorConfig = {
-  defaultNavigationOptions,
-};
-
-export const AuthStack = createStackNavigator(
-  {
-    SignIn: {
-      screen: SignIn,
-      navigationOptions: {
-        headerTitle: 'Sign In',
-      },
-    },
-  },
-  stackConfig,
-);
+export type AuthRoutes = 'Welcome' | 'SignIn';

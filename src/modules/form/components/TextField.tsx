@@ -52,17 +52,11 @@ type ReactNativeTextInputPropsToPick =
   | 'autoCapitalize'
   | 'maxLength';
 
-type PickedReactNativeTextInputProps = Pick<
-  TextInputProps,
-  ReactNativeTextInputPropsToPick
->;
+type PickedReactNativeTextInputProps = Pick<TextInputProps, ReactNativeTextInputPropsToPick>;
 
 type MaterialTextInputPropsToPick = 'renderAccessory';
 
-type PickedMaterialTextInputProps = Pick<
-  TextFieldProps,
-  MaterialTextInputPropsToPick
->;
+type PickedMaterialTextInputProps = Pick<TextFieldProps, MaterialTextInputPropsToPick>;
 
 interface Props
   extends PickedReduxFormProps,
@@ -72,6 +66,4 @@ interface Props
   row?: boolean;
 }
 
-export const TextField: React.FC<Props> = props => (
-  <Field component={TextInputField} {...props} />
-);
+export const TextField: React.FC<Props> = props => <Field component={TextInputField} {...props} />;
