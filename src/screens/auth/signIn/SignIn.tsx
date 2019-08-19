@@ -17,11 +17,9 @@ interface Values {
 
 type StoreProps = ReturnType<typeof mapStateToProps>;
 
-type ConnectProps = StoreProps;
+type FormProps = InjectedFormProps<Values, StoreProps>;
 
-type FormProps = InjectedFormProps<Values, ConnectProps>;
-
-type Props = ConnectProps & FormProps;
+type Props = StoreProps & FormProps;
 
 interface State {
   loading: boolean;
@@ -102,7 +100,7 @@ export default connect(
   mapStateToProps,
   null,
 )(
-  reduxForm<Values, ConnectProps>({
+  reduxForm<Values, StoreProps>({
     form: 'login',
     destroyOnUnmount: true,
     asyncValidate: Form.validator(VALIDATION_SCHEMA),

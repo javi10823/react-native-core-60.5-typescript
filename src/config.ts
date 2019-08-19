@@ -12,9 +12,26 @@ import {
 } from 'react-native-dotenv';
 
 const isProduction = true;
-console.log(`\n\n`, 'IS_PRODUCTION_MODE', isProduction, `\n\n\n`);
-console.log(`\n\n`, 'REDUX_LOGGER_ACTIVATED', REDUX_LOGGER_ACTIVATED, `\n\n\n`);
-console.log(`\n\n`, 'API_CONNECTOR_LOGS_ACTIVATED', API_CONNECTOR_LOGS_ACTIVATED, `\n\n\n`);
+
+console.table(
+  [
+    {
+      id: 'IS_PRODUCTION_MODE',
+      value: isProduction,
+    },
+    {
+      id: 'REDUX_LOGGER_ACTIVATED',
+      value: REDUX_LOGGER_ACTIVATED,
+    },
+    {
+      id: 'API_CONNECTOR_LOGS_ACTIVATED',
+      value: API_CONNECTOR_LOGS_ACTIVATED,
+    },
+  ].reduce((acc, { id, ...x }) => {
+    acc[id] = x;
+    return acc;
+  }, {}), // this remove the first column of indexs
+);
 
 interface Config {
   isDev: boolean;
