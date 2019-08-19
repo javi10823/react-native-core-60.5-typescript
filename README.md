@@ -37,6 +37,8 @@ The content of each key was added in 1Passord for security purposes
 
 There is a `.env.example` file in the root of the project, you have to rename to `.env` and add the proper values for each key.
 
+## Recomendation: use [react-native-elements](https://react-native-training.github.io/react-native-elements/docs/overview.html)
+
 ## launch iOS
 
 `$ react-native run-ios` or from XCode opening the workspace file

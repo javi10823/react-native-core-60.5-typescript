@@ -23,6 +23,8 @@ const Home = ({ logOut }: Props) => {
       </Title>
       <Button size="big" text="Go to FetchExample" onPress={() => goToPage('FetchExample')} />
       <Spacing />
+      <Button size="big" text="Go to Device Info" onPress={() => goToPage('DeviceInfo')} />
+      <Spacing />
       <Button size="big" text="LogOut" onPress={onPressLogOut} />
     </Container>
   );

@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import { Home, FetchExample } from '../screens';
+import { Home, FetchExample, DeviceInfo } from '../screens';
 
 const noHeader = { header: null };
 
@@ -10,6 +10,10 @@ const stack = {
   },
   FetchExample: {
     screen: FetchExample,
+    navigationOptions: noHeader,
+  },
+  DeviceInfo: {
+    screen: DeviceInfo,
     navigationOptions: noHeader,
   },
 };

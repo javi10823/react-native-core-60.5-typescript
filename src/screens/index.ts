@@ -5,3 +5,4 @@ export { default as Welcome } from './auth/welcome';
 // SCREENS FROM MAIN ────────────────────────────────────────────────────────────────────────────────
 export { default as Home } from './main/home';
 export { default as FetchExample } from './main/fetchExample';
+export { default as DeviceInfo } from './main/deviceInfo';
