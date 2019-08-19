@@ -3,7 +3,7 @@ import { SignIn, Welcome } from '../screens';
 
 const noHeader = { header: null };
 
-export const AuthStack = createStackNavigator({
+const stack = {
   Welcome: {
     screen: Welcome,
     navigationOptions: noHeader,
@@ -12,6 +12,7 @@ export const AuthStack = createStackNavigator({
     screen: SignIn,
     navigationOptions: noHeader,
   },
-});
+};
 
-export type AuthRoutes = 'Welcome' | 'SignIn';
+export const AuthStack = createStackNavigator(stack);
+export type AuthRoutes = keyof typeof stack;

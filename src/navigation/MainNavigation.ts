@@ -3,7 +3,7 @@ import { Home, FetchExample } from '../screens';
 
 const noHeader = { header: null };
 
-export const MainStack = createStackNavigator({
+const stack = {
   Home: {
     screen: Home,
     navigationOptions: noHeader,
@@ -12,6 +12,7 @@ export const MainStack = createStackNavigator({
     screen: FetchExample,
     navigationOptions: noHeader,
   },
-});
+};
 
-export type MainRoutes = 'Home' | 'FetchExample';
+export const MainStack = createStackNavigator(stack);
+export type MainRoutes = keyof typeof stack;
