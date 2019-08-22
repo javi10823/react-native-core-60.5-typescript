@@ -1,5 +1,6 @@
 import * as React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import SplashScreen from 'react-native-splash-screen';
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -24,6 +25,7 @@ class Initializing extends React.Component {
     } catch (err) {
       resetStack('Welcome');
     }
+    SplashScreen.hide();
   }
 
   render() {

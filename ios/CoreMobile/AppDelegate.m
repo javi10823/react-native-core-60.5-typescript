@@ -18,6 +18,7 @@
 #import <UMCore/UMModuleRegistry.h>
 #import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
+#import "RNSplashScreen.h"
 
 @implementation AppDelegate
 
@@ -35,6 +36,7 @@ RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge moduleName:@"
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   return YES;
 }
 
