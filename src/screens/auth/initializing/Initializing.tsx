@@ -20,7 +20,7 @@ class Initializing extends React.Component {
       await waitOneSecond(); // only for demo
       const userLogged = await AsyncStorage.getItem(USER_TOKEN);
       console.log('userLogged', userLogged);
-      if (userLogged) initApp('Home');
+      if (userLogged) initApp('HomeNavigator');
       else resetStack('Welcome');
     } catch (err) {
       resetStack('Welcome');

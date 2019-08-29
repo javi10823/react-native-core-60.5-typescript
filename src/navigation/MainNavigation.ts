@@ -1,22 +1,27 @@
 import { createStackNavigator } from 'react-navigation';
-import { Home, FetchExample, DeviceInfo } from '../screens';
+import { createFluidNavigator } from 'react-navigation-fluid-transitions';
+import { Home, FetchExample, DeviceInfo, TransitionExample } from '../screens';
 
 const noHeader = { header: null };
 
-const stack = {
+const fluidStack = {
   Home: {
     screen: Home,
-    navigationOptions: noHeader,
   },
-  FetchExample: {
-    screen: FetchExample,
-    navigationOptions: noHeader,
-  },
-  DeviceInfo: {
-    screen: DeviceInfo,
-    navigationOptions: noHeader,
+  TransitionExample: {
+    screen: TransitionExample,
   },
 };
 
-export const MainStack = createStackNavigator(stack);
-export type MainRoutes = keyof typeof stack;
+const stack = {
+  HomeNavigator: createFluidNavigator(fluidStack, { defaultNavigationOptions: noHeader }),
+  FetchExample: {
+    screen: FetchExample,
+  },
+  DeviceInfo: {
+    screen: DeviceInfo,
+  },
+};
+
+export const MainStack = createStackNavigator(stack, { defaultNavigationOptions: noHeader });
+export type MainRoutes = keyof typeof stack | keyof typeof fluidStack;

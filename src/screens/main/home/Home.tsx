@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Transition } from 'react-navigation-fluid-transitions';
 
 import { Container, Title } from './styles';
 import { Button, Spacing } from '../../../components';
@@ -26,6 +27,10 @@ const Home = ({ logOut }: Props) => {
       <Button size="big" text="Go to Device Info" onPress={() => goToPage('DeviceInfo')} />
       <Spacing />
       <Button size="big" text="LogOut" onPress={onPressLogOut} />
+      <Spacing />
+      <Transition shared="example">
+        <Button size="big" text="Transition" onPress={() => goToPage('TransitionExample')} />
+      </Transition>
     </Container>
   );
 };
