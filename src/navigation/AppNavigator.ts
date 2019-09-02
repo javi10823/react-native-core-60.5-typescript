@@ -1,9 +1,10 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 
 import { MainStack, MainRoutes } from './MainNavigation';
 import { AuthStack, AuthRoutes } from './AuthNavigation';
 
-const AppStack = createSwitchNavigator(
+const AppStack = createAnimatedSwitchNavigator(
   {
     Auth: AuthStack,
     Main: MainStack,
