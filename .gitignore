@@ -72,7 +72,6 @@ __generated__
 
 # Expo Client builds
 /client-builds
-.vscode
 
 # IcoMoon
 src/assets/icomoon/demo-files

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.coremobile.generated.BasePackageList;
 import com.facebook.react.ReactApplication;
+import com.swmansion.reanimated.ReanimatedPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -37,6 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new ReanimatedPackage(),
                     new SplashScreenReactPackage(),
                     new RNDeviceInfo(),
                     new AsyncStoragePackage(),
